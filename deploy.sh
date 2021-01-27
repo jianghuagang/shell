@@ -9,9 +9,9 @@ fi
 APP_NAME=ibatchpharma
 JAR_NAME=pharma-1.0.jar
 TMP_DIR=/tmp/ibatchpharma
-FILE_NAME=$1
-PHARMA_HOME=/usr/local/apache-tomcat-9.0.0.M17/webapps
-PHARMA_DIR=ROOT
+FILE_NAME=ibatchpharma-180124.tar
+PHARMA_HOME=/opt
+PHARMA_DIR=ibatchpharma
 RESOURCE_HOME=/tmp/ibatchpharma/app/resource
 DAY=`date "+%y%m%d"`
 
@@ -27,7 +27,9 @@ rm -Rf $PHARMA_HOME/$PHARMA_DIR
 # extract new app
 cd $TMP_DIR/app
 tar -xf $FILE_NAME
-mv ibatchpharma $PHARMA_DIR
+if [ "ibatchpharma" != "$PHARMA_DIR" ]; then
+  mv ibatchpharma $PHARMA_DIR
+fi
 
 # create classes if not exist
 if [ ! -d "$TMP_DIR/app/$PHARMA_DIR/WEB-INF/classes" ]; then
